@@ -1,5 +1,13 @@
 [Movies app link](https://movies-app-la8x.vercel.app/ "Click")
 
+
+https://redux.js.org/introduction/getting-started
+https://react-redux.js.org/introduction/getting-started
+
+yarn add redux
+yarn add react-redux
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
