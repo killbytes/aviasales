@@ -20,6 +20,7 @@ export type AviasalesAction =
     };
 
 const initialState = {
+  ticketsIsLoading: false,
   transferFilter: [] as TransferCount[],
   ticketSort: 'cheapest' as TicketSort,
 };
@@ -67,19 +68,6 @@ const aviasalesReducer: Reducer<typeof initialState, AviasalesAction> = (
     default:
       return state;
   }
-};
-
-export const toggleTransferCount = (count: TransferCount): AviasalesAction => {
-  return {
-    type: 'TOGGLE_TRANSFER_COUNT',
-    count,
-  };
-};
-
-export const toggleTransferCountAll = (): AviasalesAction => {
-  return {
-    type: 'TOGGLE_TRANSFER_COUNT_ALL',
-  };
 };
 
 export default aviasalesReducer;

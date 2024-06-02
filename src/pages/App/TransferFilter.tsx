@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks.ts';
 
 import css from './TransferFilter.module.scss';
-import { toggleTransferCount, toggleTransferCountAll } from "src/redux/reducers/aviasalesReducer.ts";
+import { toggleTransferCount, toggleTransferCountAll } from "src/redux/reducers/aviasalesActions.ts";
 
 function TransferFilter() {
   const { transferFilter: counts } = useAppSelector((state) => state.aviasales);
