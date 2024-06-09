@@ -24,16 +24,21 @@ export const pushTickets = (tickets: Ticket[]): AviasalesAction => {
     tickets,
   };
 };
-export const loadTickets = (): ThunkAction<void, RootState, unknown, AviasalesAction> => async (dispatch) => {
+export const loadTickets = (): ThunkAction<Promise<void>, RootState, unknown, AviasalesAction> => async (dispatch) => {
   dispatch({ type: 'START_LOADING_TICKETS' });
   try {
     const { searchId } = await getSearchID();
     // eslint-disable-next-line no-constant-condition
     while (true) {
       // eslint-disable-next-line no-await-in-loop
-      const { tickets, stop } = await getTickets(searchId);
-      if (stop) break;
-      dispatch(pushTickets(tickets));
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        const { tickets, stop } = await getTickets(searchId);
+        if (stop) break;
+        dispatch(pushTickets(tickets));
+      } catch (ex) {
+        /* empty */
+      }
     }
   } finally {
     dispatch({ type: 'END_LOADING_TICKETS' });

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/hooks.ts';
 import Logo from 'src/assets/Logo.svg';
@@ -10,8 +10,15 @@ import css from './App.module.scss';
 function App() {
   const state = useAppSelector((state) => state.aviasales);
   const dispatch = useAppDispatch();
+
+  const isLoadingRef = useRef(false);
   useEffect(() => {
-    dispatch(loadTickets());
+    if (!isLoadingRef.current) {
+      isLoadingRef.current = true
+      dispatch(loadTickets()).finally(() => {
+        isLoadingRef.current = false;
+      });
+    }
   }, []);
 
   return (
