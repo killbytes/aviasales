@@ -1,6 +1,7 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import aviasalesReducer from "src/redux/reducers/aviasalesReducer.ts";
-import { thunk } from "redux-thunk";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { thunk } from 'redux-thunk';
+
+import aviasalesReducer from 'src/redux/reducers/aviasalesReducer.ts';
 
 const rootReducer = combineReducers({
   aviasales: aviasalesReducer,

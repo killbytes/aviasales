@@ -1,6 +1,6 @@
-import { Ticket } from "src/model/Ticket.ts";
+import { Ticket } from 'src/model/Ticket.ts';
 
-const apiBase = 'https://front-test.dev.aviasales.ru';
+const apiBase = 'https://aviasales-test-api.kata.academy';
 
 export async function getSearchID() {
   const res = await fetch(`${apiBase}/search`);
@@ -10,8 +10,8 @@ export async function getSearchID() {
   return res.json() as Promise<{ searchId: string }>;
 }
 
-export async function getTickets(searchID: { searchId: string }) {
-  const res = await fetch(`${apiBase}/tickets?searchId=${searchID}`);
+export async function getTickets(searchId: string) {
+  const res = await fetch(`${apiBase}/tickets?searchId=${searchId}`);
   if (!res.ok) {
     throw new Error(`Could not fetch tickets`);
   }

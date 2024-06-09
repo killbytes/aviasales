@@ -1,5 +1,6 @@
-import { Reducer } from "redux";
-import { Ticket } from "src/model/Ticket.ts";
+import { Reducer } from 'redux';
+
+import { Ticket } from 'src/model/Ticket.ts';
 
 export type TransferCount = 0 | 1 | 2 | 3;
 export type TicketSort = 'cheapest' | 'fastest';
