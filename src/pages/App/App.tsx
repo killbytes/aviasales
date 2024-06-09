@@ -2,10 +2,17 @@ import css from './App.module.scss';
 import { useAppDispatch, useAppSelector } from "src/redux/hooks.ts";
 import Logo from 'src/assets/Logo.svg';
 import TransferFilter from 'src/pages/App/TransferFilter.tsx';
+import { useEffect } from "react";
+import { loadTickets } from "src/redux/reducers/aviasalesActions.ts";
+
 
 function App() {
   const state = useAppSelector((state) => state.aviasales);
   const dispatch = useAppDispatch();
+  useEffect(()=> {
+      dispatch(loadTickets())
+    },
+    []);
 
   return (
     <main className={css.main}>
@@ -16,6 +23,13 @@ function App() {
       </header>
       <div className="app-grid">
         <TransferFilter />
+      </div>
+      <div>
+        isLoading:
+        {state.ticketsIsLoading + ''}
+      </div>
+      <div>
+        {state.tickets.map((t) => <div>{JSON.stringify(t)}</div>)}
       </div>
     </main>
   );

@@ -10,7 +10,7 @@ export async function getSearchID() {
   return res.json() as Promise<{ searchId: string }>;
 }
 
-export async function getTickets(searchID: string) {
+export async function getTickets(searchID: { searchId: string }) {
   const res = await fetch(`${apiBase}/tickets?searchId=${searchID}`);
   if (!res.ok) {
     throw new Error(`Could not fetch tickets`);

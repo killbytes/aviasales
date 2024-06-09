@@ -30,5 +30,5 @@ export interface Ticket {
       // Общее время перелёта в минутах
       duration: number;
     },
-  ],
+  ];
 }

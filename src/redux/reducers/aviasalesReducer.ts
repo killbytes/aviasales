@@ -1,4 +1,5 @@
 import { Reducer } from "redux";
+import { Ticket } from "src/model/Ticket.ts";
 
 export type TransferCount = 0 | 1 | 2 | 3;
 export type TicketSort = 'cheapest' | 'fastest';
@@ -17,12 +18,23 @@ export type AviasalesAction =
   | {
       type: 'SET_TICKET_SORT';
       sort: TicketSort;
+    }
+  | {
+      type: 'PUSH_TICKETS';
+      tickets: Ticket[];
+    }
+  | {
+      type: 'START_LOADING_TICKETS';
+    }
+  | {
+      type: 'END_LOADING_TICKETS';
     };
 
 const initialState = {
   ticketsIsLoading: false,
   transferFilter: [] as TransferCount[],
   ticketSort: 'cheapest' as TicketSort,
+  tickets: [] as Ticket[],
 };
 const aviasalesReducer: Reducer<typeof initialState, AviasalesAction> = (
   state = initialState,
@@ -64,6 +76,21 @@ const aviasalesReducer: Reducer<typeof initialState, AviasalesAction> = (
       return {
         ...state,
         ticketSort: action.sort,
+      };
+    case 'PUSH_TICKETS':
+      return {
+        ...state,
+        tickets: [...state.tickets, ...action.tickets],
+      };
+    case 'START_LOADING_TICKETS':
+      return {
+        ...state,
+        ticketsIsLoading: true,
+      };
+    case 'END_LOADING_TICKETS':
+      return {
+        ...state,
+        ticketsIsLoading: false,
       };
     default:
       return state;
